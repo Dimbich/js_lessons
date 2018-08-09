@@ -21,4 +21,5 @@ for (let i = 1; i <= 3;i++){
   addTypeGoods();
 }
 
-alert("Бюджет на день составляет: "+Math.round((mountBudget/30)*100)/100+" рублей");
+alert("Бюджет на день составляет: "+
+      Math.round((mountBudget/30)*100)/100+" руб.");
