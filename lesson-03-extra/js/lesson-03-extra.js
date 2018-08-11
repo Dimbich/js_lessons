@@ -32,6 +32,7 @@ function handleStr(str) {
   if (typeof(str)==='string') {
     let newStr = str.replace(/^\s+|\s+$/g,"");
     return newStr.length > 50 ? newStr.substring(0, 49) + "..." : newStr;          
+  } else {
+    alert("Аргумент должен быть строкой!");
   }
 }  
-
