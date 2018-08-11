@@ -8,7 +8,7 @@ let mainList= {
   objNameShop: nameShop,
   Budget: mounthBudget,
   shopGoods: [],
-  employers: [],
+  employers: {},
   open: true,
   discount: true
 };
@@ -69,7 +69,7 @@ function getDiscount(price){
 }
 
 function joinEmployer(numEmployer, nameEmployer) {
-  return check(nameEmployer) ? mainList.employers.push({number:numEmployer, name:nameEmployer}):
+  return check(nameEmployer) ? mainList.employers["empl_"+numEmployer]={number:numEmployer, name:nameEmployer}:
   		 alert("Имя сотрудника задано не верно!");	
 }
 
