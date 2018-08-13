@@ -1,4 +1,3 @@
-const countGoods=5;
 let nameShop,
 	mounthBudget,
 	time,
@@ -17,7 +16,7 @@ let mainList= {
   				  for( let i=1; i < 5; i++) {
 				    let typeGoods=prompt("Какой тип товаров будем продавать?","");
 				    check(typeGoods)?mainList.shopGoods.push(typeGoods):
-				    (confirm("Товар не был добавлен!\nПовторить?")?addTypeGoods():alert("Тип товара не добавлен!"));
+				    (confirm("Товар не был добавлен!\nПовторить?")?chooseGoods():alert("Тип товара не добавлен!"));
 				  }    
   },
 
@@ -51,7 +50,7 @@ let mainList= {
   hireEmployer: function() {
 				  for (let i=1; i<5; i++) {
 				    let name=prompt("Введите имя сотрудника");
-				    return check(nameEmployer) ? this.employers[i]=name:
+				    return check(name) ? this.employers[i]=name:
 				    alert("Имя сотрудника задано не верно!");	
 				}
    
@@ -66,20 +65,20 @@ let mainList= {
   	  this.shopItems.forEach(function(element,item,arr){
   	  						  arr[item]=element.trim();
   	 						  }
-  	  )   	
-  	  this.shopItems.sort()
+  	  );   	
+  	  this.shopItems.sort();
   	}  
   } 
 };
 
-function start(){  
+/*function start(){  
   nameShop = prompt("Название вашего магазина?", "").toUpperCase();
   time=21;
   do {
     mounthBudget = +prompt("Ваш бюджет на месяц?", "");	
   }  while(!mounthBudget);
-  dayBudget();
-}
+  mainList.dayBudget();
+}*/
 
 //start();
 
@@ -93,7 +92,7 @@ mainList.chooseShopItems();
 mainList.shopItems.forEach(function(element,item){
   item++;
   document.write("<p>У нас вы можете купить "+ item+": "+element+"</p>");
-})
+});
 
 for ( let key in mainList) {
 	console.log("Наш магазин включает"+key+": "+mainList[key]);
