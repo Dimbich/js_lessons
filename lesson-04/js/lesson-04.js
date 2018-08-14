@@ -17,7 +17,7 @@ let mainList= {
 				    let typeGoods=prompt("Какой тип товаров будем продавать?","");
 				    check(typeGoods)?mainList.shopGoods.push(typeGoods):
 				    (confirm("Товар не был добавлен!\nПовторить?")?chooseGoods():alert("Тип товара не добавлен!"));
-				  }    
+			  }    
   },
 
   workTime: function(time) {
@@ -50,8 +50,8 @@ let mainList= {
   hireEmployer: function() {
 				  for (let i=1; i<5; i++) {
 				    let name=prompt("Введите имя сотрудника");
-				    return check(name) ? this.employers[i]=name:
-				    alert("Имя сотрудника задано не верно!");	
+				    check(name) ? this.employers[i]=name:
+				    alert("Имя сотрудника задано не верно!");					
 				}
    
   },
@@ -97,4 +97,6 @@ mainList.shopItems.forEach(function(element,item){
 for ( let key in mainList) {
 	console.log("Наш магазин включает"+key+": "+mainList[key]);
 }
+
+
 
