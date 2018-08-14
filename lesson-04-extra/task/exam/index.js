@@ -25,13 +25,15 @@ function getFriendlyNumbers(start, end) {
 function getOneNumber(start) {
 	let i=1;
 	let sum=0;
+
 	while (i<start) {
 	  if(!(start%i)) {
-		 sum+=i;
+		   sum+=i;
 		 }
 	  i++;
-	}
-	    return sum;	
+    }
+
+  return sum;	
 
 }
 
@@ -40,6 +42,8 @@ function checkNumber(x,y) {
   return (typeof(x)=='number' && typeof(y)=='number' && (x*y>0) && y>=x && !~(x+y+"").indexOf("."));  
 }
 
-
-console.log(getFriendlyNumbers(200, 284));
-
+module.exports = {
+    firstName: 'Dmitriy',
+    secondName: 'Shirmanov',
+    task: getFriendlyNumbers
+}
