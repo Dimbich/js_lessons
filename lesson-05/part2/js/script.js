@@ -22,12 +22,12 @@ let employer_btn = document.querySelector('div.main-functions').getElementsByTag
 
 
 //Получить все поля из правого меню
-let items = document.querySelector("#items");
-let time = document.querySelector("#time");
-let budget = document.querySelector("#budget");
+let items = document.querySelector(".choose-item");
+let time = document.querySelector(".time-value");
+let budget = document.querySelector(".count-budget-value");
 
 //Получить все имена сотрудников
-let employers = document.querySelectorAll(".main-functions>input.hire-employers-item");
+let employers = document.querySelectorAll(".hire-employers-item");
 
 
 

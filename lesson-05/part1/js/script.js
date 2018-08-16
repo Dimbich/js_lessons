@@ -14,7 +14,7 @@ menu.appendChild(newMenuItem);
 
 document.body.style.background ="url('../part1/img/apple_true.jpg') center no-repeat";
 
-document.querySelector('#title').textContent+="подлинную";
+document.querySelector('#title').textContent="Мы продаем только подлинную технику Apple";
 
 document.querySelectorAll('.column')[document.querySelectorAll('.column').length-1]
 .removeChild(document.querySelector('.adv'));
