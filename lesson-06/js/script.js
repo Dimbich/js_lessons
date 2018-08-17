@@ -20,13 +20,20 @@ let employer_btn = document.querySelector('div.main-functions').getElementsByTag
 
 
 //Получить все поля из правого меню
-let choose_items = document.querySelector("#items");
-let choose_time = document.querySelector("#time");
-let budget = document.querySelector("#budget");
+let choose_items = document.querySelector(".choose-item");
+let choose_time = document.querySelector(".time-value");
+let budget = document.querySelector(".count-budget-value");
+
+//Получить поле промокода
+let promoCodeField = document.querySelector(".promo-code-value");
 
 //Получить все имена сотрудников
 let employers = document.querySelectorAll(".hire-employers-item");
 
+//олучить все кнопки в правом меню
+let rigthMenuBtn = document.querySelectorAll(".main-functions button");
+
+//----Начало обработчиков событий
 open.addEventListener('click',() => {
   do {
     mounthBudget = +prompt("Ваш бюджет на месяц?", ""); 
@@ -34,7 +41,10 @@ open.addEventListener('click',() => {
 
   budgetValue.textContent = mounthBudget;
   nameValue.textContent = prompt("Название вашего магазина?", "").toUpperCase();
- 
+  //включил кнопкив правом меню
+  for (let i = 0 ; i<rigthMenuBtn.length ; i++) {
+    rigthMenuBtn[i].disabled = false;
+  }
 });
 
 goods_btn.addEventListener('click' ,() =>{
@@ -103,8 +113,73 @@ employer_btn.addEventListener('click', () => {
   }
 })
 
+
+//При загрузке страницы отключаем все кнопки в правом меню, делаем поле "Расчет дневного бюджета",
+// генерируем номер купона
+document.addEventListener('DOMContentLoaded',() => {
+    let countNum = 4;
+    let i = 0;
+      while (i<countNum) {
+        promoCode+=Math.round(Math.random()*9);
+      i++;
+  }
+  console.log(promoCode);
+  //отключил кнопки в правом меню
+  for (let i = 0 ; i<rigthMenuBtn.length ; i++) {
+    rigthMenuBtn[i].disabled = true;
+  }
+  //
+  budget.readOnly = true;
+});
+
+//Проверяем что номер купона верный и даем скидку
+promoCodeField.addEventListener('change',() => {
+  let items = promoCodeField.value;
+
+  if (items==promoCode) {
+      mainList.discount = true;
+      discountValue.style.backgroundColor='green';
+      discountValue.textContent = 'Вам предоствалена скида 25%';
+
+    } else {
+      mainList.discount = false;
+      alert('Введеный промокод не верный');
+      discountValue.style.backgroundColor='red';
+      discountValue.textContent = 'Скидки нет';
+    }
+
+});
+
+let countFillField = 0;
+//активируем кнопку Утвердить при изменении знаения в одной из категорий
+for (let i = 0 ; i < goods_item.length ; i++){
+  goods_item[i].addEventListener('input',(e) => {
+    goods_btn.disabled = false;
+//проверяем что есть поля с введденными данными
+//и подсчитываем их количество
+    if (!e.target.value) {
+      countFillField++  
+    }    
+  });
+  goods_item[i].addEventListener('change',(e) => {
+//проверяем что поле с пустое
+//и в случае что все поля пустые делаем кнопку не активной
+    if (!!e.target.value) {
+      countFillField--;  
+    }  
+    if(countFillField==0){
+      goods_btn.disabled = true;
+    }  
+  });
+}
+//------завершение обработчиков событий
+
+
 let	mounthBudget,
 	  price;
+
+let promoCode = "";
+
 
 let mainList= {
   objNameShop: "",

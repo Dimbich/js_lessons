@@ -103,13 +103,16 @@ body {
 .main-info .discount,
 .main-info .discount-value,
 .main-info .isopen,
-.main-info .isopen-value {
+.main-info .isopen-value, 
+.main-info .promo-code,
+.main-info .promo-code-value {
   width: 48%;
   margin-top: 10px;
   min-height: 40px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.8);
 }
+
 .main-info .isopen-value,
 .main-info .discount-value {
   background-color: red;
