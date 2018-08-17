@@ -45,20 +45,17 @@ let dataOut = document.querySelector('.dateOut');
 let result_btn = document.querySelector('.getDate');
 
 result_btn.addEventListener('click',()=>{
-  let data1_value = new Date(data1.value);
-  data1_value=getRuDate(data1_value);
-  let data2_value = new Date(data2.value);
-  data2_value=getRuDate(data2_value);
-  dataOut.value =(data2_value-data1_value)/60/60/24/1000; 	
+  console.log(data1.value);		
+  console.log(typeof(data1.value));
+  let data1_value = new Date(data1.value.replace(/(\d{2})\.(\d{2})\.(\d{4})/, '$2.$1.$3'));
+  let data2_value = new Date(data2.value.replace(/(\d{2})\.(\d{2})\.(\d{4})/, '$2.$1.$3'));
+  
+  if (data1_value <= data2_value) {   
+    dataOut.value =(data2_value-data1_value)/60/60/24/1000;
+  } else {
+    alert('Вторая дата должна быть больше либо равна первой!');
+  }	  
 }
 );
 
-function getRuDate(dd){
-let day=dd.getDate();
-let mounth=dd.getMonth();
-let year = dd.getFullYear();
-let newDate= new Date(year, day, mounth);
-return newDate;
-}	
 	
-
