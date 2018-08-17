@@ -154,19 +154,16 @@ let countFillField = 0;
 //активируем кнопку Утвердить при изменении знаения в одной из категорий
 for (let i = 0 ; i < goods_item.length ; i++){
   goods_item[i].addEventListener('input',(e) => {
-    goods_btn.disabled = false;
-//проверяем что есть поля с введденными данными
-//и подсчитываем их количество
-    if (!e.target.value) {
-      countFillField++  
-    }    
+    goods_btn.disabled = false; 
   });
   goods_item[i].addEventListener('change',(e) => {
 //проверяем что поле с пустое
 //и в случае что все поля пустые делаем кнопку не активной
-    if (!!e.target.value) {
+    if (e.target.value.length == 0) {
       countFillField--;  
-    }  
+    } else {
+      countFillField++  
+    } 
     if(countFillField==0){
       goods_btn.disabled = true;
     }  
