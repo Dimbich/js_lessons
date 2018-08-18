@@ -30,8 +30,14 @@ let promoCodeField = document.querySelector(".promo-code-value");
 //Получить все имена сотрудников
 let employers = document.querySelectorAll(".hire-employers-item");
 
-//олучить все кнопки в правом меню
+//Получить все кнопки в правом меню
 let rigthMenuBtn = document.querySelectorAll(".main-functions button");
+
+//Получить все кнопки в правом меню
+let rigthMenuInput = document.querySelectorAll(".main-functions input");
+
+//Признак могу ли я вносить измениния в поля в правом меню
+let canChangeField = false;
 
 //----Начало обработчиков событий
 open.addEventListener('click',() => {
@@ -41,10 +47,30 @@ open.addEventListener('click',() => {
 
   budgetValue.textContent = mounthBudget;
   nameValue.textContent = prompt("Название вашего магазина?", "").toUpperCase();
-  //включил кнопкив правом меню
-  for (let i = 0 ; i<rigthMenuBtn.length ; i++) {
-    rigthMenuBtn[i].disabled = false;
+  canChangeField = true;
+  budget_btn.disabled = false;
+
+//Если перед открытием магазина были заданы категории, кнопка 'Утвердить' активна
+  for (let i = 0; i < goods_item.length; i++){
+    if (!!goods_item[i].value) {
+       countFillField1++;  
+    }     
   }
+
+  if (countFillField1>0) {
+      goods_btn.disabled=false;
+  }
+//Если перед открытием магазина были заданы категории, кнопка 'Нанять' активна
+  for (let i = 0; i < employers.length; i++){
+    if (!!employers[i].value) {
+       countFillField2++;  
+    }     
+  }
+
+  if (countFillField2>0) {
+    employer_btn.disabled=false;
+  }
+
 });
 
 goods_btn.addEventListener('click' ,() =>{
@@ -55,9 +81,9 @@ goods_btn.addEventListener('click' ,() =>{
     if (check(a)){
       mainList.shopGoods.push(a);
       goodsValue.textContent = mainList.shopGoods;
-    } else {
+    }/* else {
       i--;
-    }
+    }*/
   }     
 });
 
@@ -102,14 +128,19 @@ choose_time.addEventListener('change',()=>{
 });
 
 budget_btn.addEventListener('click',() => {
-  budget.value=  mounthBudget/30;
+  budget.value = mounthBudget/30;
 })
 
 employer_btn.addEventListener('click', () => {
   for (let i=0; i<employers.length; i++) {
     let name=employers[i].value;
-    mainList.employers[i]=name; 
-    employersValue.textContent+=mainList.employers[i]+", ";
+    if (!!name) {
+      mainList.employers[i]=name; 
+    }    
+  }
+
+  for (let nameEmploy in mainList.employers) {
+    employersValue.textContent+=mainList.employers[nameEmploy]+", ";
   }
 })
 
@@ -150,27 +181,62 @@ promoCodeField.addEventListener('change',() => {
 
 });
 
-let countFillField = 0;
-//активируем кнопку Утвердить при изменении знаения в одной из категорий
-for (let i = 0 ; i < goods_item.length ; i++){
-  goods_item[i].addEventListener('input',(e) => {
-    goods_btn.disabled = false; 
-  });
-  goods_item[i].addEventListener('change',(e) => {
+//Добавляем событие на поля ввода вправом меню
+for (let i = 0 ; i<rigthMenuInput.length ; i++) {
+
+  let rigthMenuInputClass = rigthMenuInput[i].classList;  
+  //только для полей ввода сотрудников или ктаегорий
+  if(rigthMenuInputClass.contains('goods-item')||rigthMenuInputClass.contains('hire-employers-item')) {
+    //обратчики для полей категорий
+    if (rigthMenuInput[i].className =="goods-item") {
+      //обработчик на ввод данных
+      rigthMenuInput[i].addEventListener('input',(e) => {
+        if (canChangeField) {
+          goods_btn.disabled = false; 
+        }
+      });
+      //обработчик на изменение
+      rigthMenuInput[i].addEventListener('change',(e) => {
 //проверяем что поле с пустое
 //и в случае что все поля пустые делаем кнопку не активной
-    if (e.target.value.length == 0) {
-      countFillField--;  
+        if (e.target.value.length == 0 && canChangeField) {
+          countFillField1--;  
+        } else if (canChangeField) {
+          countFillField1++     
+        } 
+        if(countFillField1==0){
+            goods_btn.disabled = true;
+        }  
+      });
     } else {
-      countFillField++  
-    } 
-    if(countFillField==0){
-      goods_btn.disabled = true;
-    }  
-  });
+       //обратчики для полей сотрудников
+       //обработчик на ввод данных
+      rigthMenuInput[i].addEventListener('input',(e) => {
+        if (canChangeField) {
+          employer_btn.disabled = false; 
+        }
+      });
+      //обработчик на изменение
+      rigthMenuInput[i].addEventListener('change',(e) => {
+//проверяем что поле с пустое
+//и в случае что все поля пустые делаем кнопку не активной
+        if (e.target.value.length == 0 && canChangeField) {
+          countFillField2--;  
+        } else if (canChangeField) {
+          countFillField2++     
+        } 
+        if(countFillField2==0){
+            employer_btn.disabled = true;
+        }  
+      });
+    }
+  }
 }
 //------завершение обработчиков событий
-
+//количество заполненных полей категории
+let countFillField1 = 0;
+//количество заполненных  полей сотрудников
+let countFillField2 = 0;
 
 let	mounthBudget,
 	  price;
