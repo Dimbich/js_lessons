@@ -1,3 +1,5 @@
+
+//---Начало получения элементов из DOM
 // кнопка
 let open = document.getElementById('open-btn');
 
@@ -36,8 +38,8 @@ let rigthMenuBtn = document.querySelectorAll(".main-functions button");
 //Получить все кнопки в правом меню
 let rigthMenuInput = document.querySelectorAll(".main-functions input");
 
-//Признак могу ли я вносить измениния в поля в правом меню
-let canChangeField = false;
+//---Конец получения элементов из DOM
+
 
 //----Начало обработчиков событий
 open.addEventListener('click',() => {
@@ -91,7 +93,7 @@ choose_items.addEventListener('change',() => {
   let items = choose_items.value;
 
   if (isNaN(items) && items!="") {
-      mainList.shopItems = items.split(",")
+      mainList.shopItems = items.split(",");
       mainList.shopItems.sort();
 
       itemsValue.textContent = mainList.shopItems;
@@ -121,9 +123,9 @@ choose_time.addEventListener('change',()=>{
   }
 
   if (mainList.open == true) {
-    isOpenValue.style.backgroundColor = 'green'
+    isOpenValue.style.backgroundColor = 'green';
   } else {
-    isOpenValue.style.backgroundColor = 'red'  
+    isOpenValue.style.backgroundColor = 'red';  
   }
 });
 
@@ -142,7 +144,7 @@ employer_btn.addEventListener('click', () => {
   for (let nameEmploy in mainList.employers) {
     employersValue.textContent+=mainList.employers[nameEmploy]+", ";
   }
-})
+});
 
 
 //При загрузке страницы отключаем все кнопки в правом меню, делаем поле "Расчет дневного бюджета",
@@ -202,7 +204,7 @@ for (let i = 0 ; i<rigthMenuInput.length ; i++) {
         if (e.target.value.length == 0 && canChangeField) {
           countFillField1--;  
         } else if (canChangeField) {
-          countFillField1++     
+          countFillField1++;     
         } 
         if(countFillField1==0){
             goods_btn.disabled = true;
@@ -233,13 +235,17 @@ for (let i = 0 ; i<rigthMenuInput.length ; i++) {
   }
 }
 //------завершение обработчиков событий
+
+//---Начало объявления переменных
+//Признак могу ли я вносить измениния в поля в правом меню
+let canChangeField = false;
 //количество заполненных полей категории
 let countFillField1 = 0;
 //количество заполненных  полей сотрудников
 let countFillField2 = 0;
 
-let	mounthBudget,
-	  price;
+let mounthBudget,
+    price;
 
 let promoCode = "";
 
@@ -254,11 +260,13 @@ let mainList= {
   shopItems: [],
   
   makeDiscount: function(price) {
-	let totalPrice = this.discount ? price*0.8 : price;
-	return totalPrice;
+  let totalPrice = this.discount ? price*0.8 : price;
+  return totalPrice;
   },
 
 };
+
+//---конец объявления переменных
 
 function check(goods) {
   return (typeof(goods) ==='string' && goods != '' && goods.length < 50);
@@ -269,8 +277,6 @@ function check(goods) {
 //workTime(15);
 
 /*for ( let key in mainList) {
-	console.log("Наш магазин включает"+key+": "+mainList[key]);
+  console.log("Наш магазин включает"+key+": "+mainList[key]);
 }
 */
-
-
