@@ -1,29 +1,24 @@
-//----начало вывода времени
- let p = document.createElement('p');
- p.style.borderStyle = "solid";
- document.body.appendChild(p);
-
-function addZero(v) {
- if(v<10||v==0) {
-   return "0"+v;
- }
-return v; 
-}	
+setTimeout(alert(1000),1000);
 
 function showDate(ddate) {
- let year = ddate.getFullYear();
- let mounth = addZero(+ddate.getMonth()+1);
- let day = addZero(ddate.getDate());
- let hours =  addZero(ddate.getHours());
- let minutes = addZero(ddate.getMinutes());
- let seconds = addZero(ddate.getSeconds());
+
+  function addZero(v) {
+  if(v<10||v==0) {
+    return "0"+v;
+  }
+ return v; 
+ }	 	
  
- return hours+":"+minutes+":"+seconds+" "+day+"."+mounth+"."+year;
+ let hours =  addZero(ddate.getHours()),
+ 	 minutes = addZero(ddate.getMinutes()),
+ 	 seconds = addZero(ddate.getSeconds()),
+ 
+ return hours+":"+minutes+":"+seconds+";
 }
 
-setInterval(function(){
+setInterval (function(){
 	let curDate = new Date;
-	p.textContent=showDate(curDate)}, 1000);
+	document.write(showDate(curDate))}, 1000);
 
 //----конец вывода времени
 
@@ -34,28 +29,5 @@ function writeDayOnRussian(){
   let dayOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
   document.write(dayOfWeek[day]);
 }
-
-writeDayOnRussian();
-//----конец вывода времени
-
-//----начало расчета количества дней между датами
-let data1 = document.querySelector('.date1');
-let data2 = document.querySelector('.date2');
-let dataOut = document.querySelector('.dateOut');
-let result_btn = document.querySelector('.getDate');
-
-result_btn.addEventListener('click',()=>{
-  console.log(data1.value);		
-  console.log(typeof(data1.value));
-  let data1_value = new Date(data1.value.replace(/(\d{2})\.(\d{2})\.(\d{4})/, '$2.$1.$3'));
-  let data2_value = new Date(data2.value.replace(/(\d{2})\.(\d{2})\.(\d{4})/, '$2.$1.$3'));
-  
-  if (data1_value <= data2_value) {   
-    dataOut.value =(data2_value-data1_value)/60/60/24/1000;
-  } else {
-    alert('Вторая дата должна быть больше либо равна первой!');
-  }	  
-}
-);
 
 	
