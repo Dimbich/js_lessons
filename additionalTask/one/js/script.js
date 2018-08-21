@@ -56,7 +56,7 @@ input.addEventListener('input', function(event) {
   }
 
 let x=startPos;  
-while (x<=endPos){	   	
+while (x<=endPos && reg.test(countries[x]) && event.target.value) {	   	
    	let li=document.createElement('li');
    	li.innerHTML = countries[x];
    	ul.appendChild(li);
