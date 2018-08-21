@@ -30,6 +30,12 @@ let startPos = 0;
 let endPos=0
 
 input.addEventListener('input', function(event) {
+
+
+	while (ul.hasChildNodes()) {
+     ul.removeChild(ul.lastChild);
+}
+
   let isFindFirst = false;
   if (!event.target.value) {
     startPos = endPos= 0 ;
@@ -48,13 +54,25 @@ input.addEventListener('input', function(event) {
    	}
    }
   }
-while (startPos<=endPos){	   	
+
+let x=startPos;  
+while (x<=endPos){	   	
    	let li=document.createElement('li');
-   	li.innerHTML = countries[startPos];
+   	li.innerHTML = countries[x];
    	ul.appendChild(li);
-   	startPos++;
+   	x++;
 }	
 });
+
+ul.addEventListener('click', function(event) {
+	let targer = event.target;
+
+	if (targer.tagName=='LI') {
+		input.value=targer.innerHTML;
+	}
+})
+
+
 
 
 
