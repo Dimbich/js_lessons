@@ -23,57 +23,79 @@ let countries = ["Австралия", "Австрия", "Азербайджан
 
 let input = document.getElementById('country'),
 	list = document.getElementById('list');
+	
+	//создаем новый элемент список для вывода найденных стран
 	ul=document.createElement('ul');
 	list.appendChild(ul);
-
-let startPos = 0;
-let endPos=0
-
+	
+	//Определяем переменные для сохранения индекса первого и последнего элемента массива,
+	//удволетворяющего введенной строке
+	let startPos = endPos =0;
+ 
+//Добавляем обработчик события для поля ввода
 input.addEventListener('input', function(event) {
-
-
-	while (ul.hasChildNodes()) {
-     ul.removeChild(ul.lastChild);
-}
-
-  let isFindFirst = false;
-  if (!event.target.value) {
-    startPos = endPos= 0 ;
+	
+  //перед отображением найденных стран очищаем список 	
+  clearList(ul);
+    
+  let isFindFirst = false; //По умолчанию ни одной страны не найдено
+  if (!event.target.value) {//Если поле ввода не заполненно, 
+    startPos = endPos= 0 ; //сбрасывем на ноль переменные хранящие первый и последний индекс
   }
-  reg = new RegExp('^'+event.target.value, 'i');	
-  for(let i = startPos ; i<countries.length; i++) {
-   if (reg.test(countries[i])) {
-   	  if (!isFindFirst) {
+  let reg = new RegExp('^'+event.target.value, 'i'); //Создаем рег. выражения для поиска с начала строки,
+													 //без учета регистра		
+  for(let i = startPos ; i<countries.length; i++) { //В цикле перебираем все элементы массива стран
+   
+   if (reg.test(countries[i])) { //Если элемент массива начинается с введенной строки
+   	  if (!isFindFirst) {		 //Говорим, что первый элемент найден и запоминаем позицию
    	    isFindFirst = true;
    	    startPos=i	
    	  }
 
-   	if (!reg.test(countries[i+1])) {
-   		endPos=i;
-   		break;
+   	if (!reg.test(countries[i+1])) { //Если следующий элемент не содержит ввведной строки,
+   		endPos=i;					//запоминаем индекс последнего элемента удволетворяющего поиску
+   		break;						//выходим из цикла					
    	}
    }
   }
 
-let x=startPos;  
+let x=startPos; //техническая переменная для перебора массива. Присваиваем ей значение первого найденного
+				//индекса
+ 
+//Пока не последний найденный элемент массива 
+//и он содержит введенную строку
+//и поле ввода не пустое 
 while (x<=endPos && reg.test(countries[x]) && event.target.value) {	   	
-   	let li=document.createElement('li');
-   	li.innerHTML = countries[x];
-   	ul.appendChild(li);
+   	let li=document.createElement('li'); //создаем новый элемент списка
+   	li.innerHTML = countries[x]; //вставляем в него название страны
+   	ul.appendChild(li); // и добавлем его в список
    	x++;
 }	
 });
 
+//добавлем обработчик события на список
 ul.addEventListener('click', function(event) {
 	let targer = event.target;
 
-	if (targer.tagName=='LI') {
-		input.value=targer.innerHTML;
+	if (targer.tagName=='LI') { //Если щелкнули по элементу списка,
+		input.value=targer.innerHTML; //то вставляем в поле ввода его       содержимое
+    clearList(ul);
 	}
-})
+});
+
+//функция очитски списка
+function clearList(elem) {
+//пока у элемента есть дети	
+  while (elem.hasChildNodes()) {
+//удаляем их	  
+     elem.removeChild(elem.lastChild);
+  }
+}
 
 
-
-
-
-
+input.onkeydown = function() {
+    var key = event.keyCode || event.charCode;
+	if (key == 8 && event.target.value) {
+	 startPos = 0;
+	}	    
+};

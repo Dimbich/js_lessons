@@ -8,7 +8,7 @@
 }
 input {
   width: 100%; 
-	margin-bottom: 10px; 
+	//margin-bottom: 10px; 
 	background: rgba(0,0,0,0.3);
 	border: none;
 	outline: none;
@@ -42,5 +42,23 @@ body {
 html { width: 100%; height:100%; overflow:hidden; }
 #list {
   color: #fff;
-  text-align: center;
+  text-align: center;  
 }
+
+#list ul{
+	margin: 0;
+    background: rgba(0,0,0,0.3);
+    width: 322px;
+    padding: 0; 
+}
+ 
+ #list li {
+	list-style-type: none;
+	cursor: pointer;
+	padding: 5px 0 5px 0;
+}
+
+ #list li:hover {
+	color: rgba(0,0,0,0.3);
+	background-color: #fff;
+ } 
