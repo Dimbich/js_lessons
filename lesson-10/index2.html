@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	  document.addEventListener('DOMContentLoaded', function(){
+	  	class options {
+	  	  constructor(height, width, bg, fontSize, textAlign){
+	  	  	this.height = height;
+	  	  	this.width = width;
+	  	  	this.bg = bg;
+	  	  	this.fontSize = fontSize;
+	  	  	this.textAlign = textAlign;
+	  	  }
+	  	  createDiv(text, typeElement ='div') {
+	  	  	let element = document.createElement(typeElement);
+	  	  	element.innerHTML = text;
+	  	  	element.style.cssText=`height:${this.height}px; width:${this.width}px;
+	  	  						   background-color:${this.bg}; font-size:${this.fontSize}px;
+	  	  						   text-align:${this.textAlign}; line-height: ${this.height}px`;
+	  	  	document.body.appendChild(element);
+	  	  }
+	  	}
+
+	  	let superDiv = new options(100,100,'red',25,'center');	  	
+	  	superDiv.createDiv('Магия!');
+
+	  });
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
