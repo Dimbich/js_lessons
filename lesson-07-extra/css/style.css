@@ -1,0 +1,39 @@
+.main {
+	width: 400px;
+	height: 200px;
+	border: 1px solid red;
+	background-color: #CCC;		
+}
+
+div .bar {
+	width: 300px;
+	height: 50px;
+	border: 1px solid blue;
+	margin-top: 50px;
+	text-align: center;
+	color: black;
+	line-height: 50px;
+	font-size: 30px;
+	position: relative;
+    background-color: white;	
+}
+
+span {
+	position: absolute;
+	left: 40%;
+}
+
+div button {
+	display: block;
+	margin-top: 25px;
+}
+
+.main, .bar, button {
+	margin: 0 auto;
+}
+
+.progress {
+	height: 100%;
+	width: 0%;
+	background-color: blue;
+}
