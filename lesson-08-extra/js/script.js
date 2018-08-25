@@ -92,7 +92,10 @@ window.addEventListener("DOMContentLoaded", function() {
   let menuItems = document.querySelector('header nav ul'),
       header = document.querySelector('header'),
       headerHeight = header.offsetHeight;
-
+          offsetHeight=document.documentElement.offsetHeight;
+          scrollTop=document.documentElement.scrollTop;
+          console.log(offsetHeight);
+          console.log(scrollTop);
   //конструктор Меню
   function Menu(elem) {
     this.about = function() {
@@ -122,12 +125,11 @@ window.addEventListener("DOMContentLoaded", function() {
       if (posItem > scroll+headerHeight) {
 	    function moveDown(){
           scroll=document.documentElement.scrollTop+=15;
-
-		  if (posItem > scroll+headerHeight) {
+		  if (posItem> scroll){
 		      requestAnimationFrame(moveDown);
-		    } else {
+		    } /*else {
               document.documentElement.scrollTop = posItem -headerHeight;	
-		    }
+		    }*/
 		  }
 		requestAnimationFrame(moveDown);
 	  //если нужный блок расположен выше, прокручиваем вверх	 	
