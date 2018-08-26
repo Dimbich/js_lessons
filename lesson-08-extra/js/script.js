@@ -1,24 +1,24 @@
 window.addEventListener("DOMContentLoaded", function() {
 
  let  tab = document.getElementsByClassName('info-header-tab'),
-	  tabContent = document.getElementsByClassName('info-tabcontent'),
-	  info = document.getElementsByClassName('info-header')[0];
+    tabContent = document.getElementsByClassName('info-tabcontent'),
+    info = document.getElementsByClassName('info-header')[0];
   
   function hideTabContent(a) {
     for(let i = a; i < tabContent.length; i++) {
-	  tabContent[i].classList.remove('show');
-	  tabContent[i].classList.add('hide');	
-    }	
+    tabContent[i].classList.remove('show');
+    tabContent[i].classList.add('hide');  
+    } 
   }
 
   hideTabContent(1);
   
   function showTabContent(b) {
     if ( tabContent[b].classList.contains('hide')) {
-	  hideTabContent(0);
-	  tabContent[b].classList.remove('hide');
-	  tabContent[b].classList.add('show');			  
-	}	
+    hideTabContent(0);
+    tabContent[b].classList.remove('hide');
+    tabContent[b].classList.add('show');        
+  } 
   }
 
   info.addEventListener('click', function(event) {
@@ -27,9 +27,9 @@ window.addEventListener("DOMContentLoaded", function() {
       for (let i = 0; i < tab.length; i++) {
         if (target ==  tab[i]) {
           showTabContent(i);
-		  break;
-		}			
-	   }		  
+      break;
+    }     
+     }      
      }
     }); 
 
@@ -92,10 +92,6 @@ window.addEventListener("DOMContentLoaded", function() {
   let menuItems = document.querySelector('header nav ul'),
       header = document.querySelector('header'),
       headerHeight = header.offsetHeight;
-          offsetHeight=document.documentElement.offsetHeight;
-          scrollTop=document.documentElement.scrollTop;
-          console.log(offsetHeight);
-          console.log(scrollTop);
   //конструктор Меню
   function Menu(elem) {
     this.about = function() {
@@ -110,48 +106,55 @@ window.addEventListener("DOMContentLoaded", function() {
     this.contacts = function() {
       scrollToItem('contacts');
     };
- 	
- 	//переменная для сохранения контекста объекта Menu
+  
+  //переменная для сохранения контекста объекта Menu
     let self = this;
 
     function scrollToItem(item) {
-      let itemBody = document.getElementById(item);
+      let itemBody = document.getElementById(item),          
+          scroll=document.documentElement.scrollTop,
+          docHeightAllDoc = document.documentElement.scrollHeight,
+          displayHeight = document.documentElement.clientHeight; 
       //положение блока текста
       posItem = itemBody.offsetTop;
-
+      
       //текущее положение страницы
-      scroll=document.documentElement.scrollTop;
+      
       //если нужный блок расположен ниже, прокуричиваем вниз
-      if (posItem > scroll+headerHeight) {
-	    function moveDown(){
-          scroll=document.documentElement.scrollTop+=15;
-		  if (posItem> scroll){
-		      requestAnimationFrame(moveDown);
-		    } /*else {
-              document.documentElement.scrollTop = posItem -headerHeight;	
-		    }*/
-		  }
-		requestAnimationFrame(moveDown);
-	  //если нужный блок расположен выше, прокручиваем вверх	 	
-      } else if(posItem < scroll+headerHeight)  {
-	    function moveUp(){
+      if (posItem > scroll) {
+      function moveDown(){
+        //переменная конца прокуртки
+        //Если текущее положение прокрутки больше, либо равна разнице между
+        //высотой всего документа и высотой эрана, то значит все прокурутили
+        let isEndDoc = (scroll >= docHeightAllDoc-displayHeight);
+        scroll=document.documentElement.scrollTop+=15;
+      if (posItem > scroll + headerHeight  && !isEndDoc){
+          requestAnimationFrame(moveDown);
+        } else {
+              document.documentElement.scrollTop = posItem -headerHeight; 
+        }
+      }
+    requestAnimationFrame(moveDown);
+    //если нужный блок расположен выше, прокручиваем вверх    
+      } else if(posItem < scroll)  {
+      function moveUp(){
           scroll=document.documentElement.scrollTop-=15;
 
-		  if (posItem < scroll+headerHeight) {
-		      requestAnimationFrame(moveUp);
-		    } else {
-		      document.documentElement.scrollTop = posItem - headerHeight;	
-		    }
-		  }
-		requestAnimationFrame(moveUp); 	
-	  }
+      if (posItem < scroll + headerHeight) {
+          requestAnimationFrame(moveUp);
+        } else {
+          document.documentElement.scrollTop = posItem - headerHeight;  
+        }
+      }
+      requestAnimationFrame(moveUp);  
+    }
     }      
     //добалвяем прослушиватль на клик
     elem.addEventListener('click', function(e) {
       var target = e.target;
       var action = target.getAttribute('href').substring(1);
       if (action) {
-      	event.preventDefault();
+        event.preventDefault();
         self[action]();
       }
     });
