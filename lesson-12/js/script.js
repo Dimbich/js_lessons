@@ -380,6 +380,35 @@ window.addEventListener("DOMContentLoaded", ()=>{
         	addNumber(this);
         });
 
+         // function maskPhone() {
+      let phoneFields = document.querySelectorAll('input[type="tel"]');
+ 
+      for(let i = 0; i < phoneFields.length; i++) {
+        phoneFields[i].addEventListener('focus', function(){
+          this.removeAttribute('type');
+          this.setAttribute('placeholder','');
+          this.value=mask.default;
+          console.log(this.setSelectionRange);
+          setStartPosition(this);
+      	   
+          //this.value= 'Работает';
+       }); 
+      }
+
+      let mask = {
+      	 sym: '_',
+      	 pattern: `^\+7\((9|${this.sym})[${this.sym}\d]{2}\)\s{1}
+      	 			[${this.sym}\d]{3}\s{1}
+      	 			[${this.sym}\d]{2}\s{1}
+      	 			[${this.sym}.sym\d]{2}$`,
+      	 default:'+7(___) ___ __ __'
+      }  
+
+      function setStartPosition(elem){
+      	console.log(elem);
+      	let startPos = elem.value.indexOf(mask.sym);
+      	elem.setSelectionRange(startPos,startPos);
+      };
 
 
   });
