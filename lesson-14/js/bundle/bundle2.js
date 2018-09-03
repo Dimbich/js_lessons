@@ -116,6 +116,23 @@ function calc() {
       totalValue.innerHTML = total;
     }
   });
+//--------
+  persons.addEventListener('blur', function () {
+    if (restDays.value == '' || this.value == '') {
+      totalValue.innerHTML = 0;
+    } else {
+      totalValue.innerHTML = total;
+    }
+  });
+  restDays.addEventListener('blur', function () {
+    if (personsSum.value == '' || this.value == '') {
+      totalValue.innerHTML = 0;
+    } else {
+      totalValue.innerHTML = total;
+    }
+  });
+//-----  
+
   place.addEventListener('change', function () {
     if (personsSum.value == '' || restDays.value == '') {
       totalValue.innerHTML = 0;
