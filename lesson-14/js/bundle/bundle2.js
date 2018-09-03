@@ -20,7 +20,7 @@
 },{"../parts2/ajax.js":2,"../parts2/calc.js":3,"../parts2/modal.js":4,"../parts2/slider.js":5,"../parts2/slowscroll.js":6,"../parts2/tab.js":7,"../parts2/timer.js":8}],2:[function(require,module,exports){
 "use strict";
 
-//require("core-js/modules/es6.promise");
+require("core-js/modules/es6.promise");
 
 function ajax() {
   var message = new Object({});
