@@ -24,7 +24,7 @@ function slowScroll(){
       let itemBody = document.getElementById(item),          
           scroll=document.documentElement.scrollTop,
           docHeightAllDoc = document.documentElement.scrollHeight,
-          displayHeight = document.documentElement.clientHeight; 
+          displayHeight = document.documentElement.clientHeight, 
       //положение блока текста
       posItem = itemBody.offsetTop;
       
@@ -71,7 +71,7 @@ function slowScroll(){
   }
 //создаем экземпляр объекта меню с пунктами
   let doIt = new Menu(menuItems);
-	
+  
 }
 
 module.exports=slowScroll;

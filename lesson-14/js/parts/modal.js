@@ -16,15 +16,15 @@ function modal(){
       overlay.style.display = "none";
       more.classList.remove('more-splash');
        document.body.style.overflow = '';
-    })
+    });
 
      for(let i = 0; i < btnTab.length; i++) {
         btnTab[i].addEventListener('click', function(){
-        // а можно вот так	
+        // а можно вот так  
           let showModalWindow = ()=>{
             this.classList.add('more-splash');
             overlay.style.display = "block";
-            document.body.style.overflow = 'hidden';	
+            document.body.style.overflow = 'hidden';  
           };
           showModalWindow();          
         });

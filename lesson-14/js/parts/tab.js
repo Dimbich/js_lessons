@@ -7,8 +7,8 @@ function tab() {
     for(let i = a; i < tabContent.length; i++) {
     tabContent[i].classList.remove('show');
     tabContent[i].classList.add('hide');  
-    };  
-  }
+    }  
+  };
 
   hideTabContent(1);
   
@@ -33,4 +33,4 @@ function tab() {
     }); 
 }
 
-module.exports=tab
+module.exports=tab;

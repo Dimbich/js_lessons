@@ -37,7 +37,7 @@ function calc() {
     if (personsSum.value == '' || restDays.value == '') {
       totalValue.innerHTML = 0;
     } else {
-     let a = tota    			
+     let a = total;         
      totalValue.innerHTML = a * this.options[this.selectedIndex].value;
     }
   });
@@ -47,9 +47,9 @@ function calc() {
 
   function checkInput(elem){
     if (/^[1-9]\d*$/i.test(elem.value)) {
-      return true
+      return true;
     } 
-      return false;    	 
+      return false;      
     }
 
   function addNumber(elem) {

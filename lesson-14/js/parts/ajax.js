@@ -1,10 +1,10 @@
 function ajax() {
-  let message = new Object();
+  let message = new Object({});
 
   message.loading = 'Загрузка';
   message.success ='Спасибо! Скоро мы сВами свяжемся';
   message.failure = 'Что-то пошло не так...Ай';
-  statusMessage = document.createElement('img');
+  let statusMessage = document.createElement('img');
   statusMessage.classList.add('status');
 
   function sendForm(elem) {
@@ -16,26 +16,26 @@ function ajax() {
           formData = new FormData(elem);
   //ajax
      function postData(data) {
-        return new Promise( function(resolve,reject) {			
-	      let request = new XMLHttpRequest();
+        return new Promise( function(resolve,reject) {      
+        let request = new XMLHttpRequest();
           
           request.open("POST",'server.php');
-          request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");		  
-	      request.onreadystatechange = function() {
+          request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");      
+        request.onreadystatechange = function() {
     
              if (request.readyState < 4) {
-		       resolve();
+           resolve();
              } else if (request.readyState==4) {
     
-		       if (request.status == 200 && request.status < 300) {
-		         resolve();
-	             //добавление контента на страницу
-		       } else {
-	             reject();
-		        }
+           if (request.status == 200 && request.status < 300) {
+             resolve();
+               //добавление контента на страницу
+           } else {
+               reject();
+            }
              }
-	      }	
-           request.send(data);});	   
+        };  
+           request.send(data);});    
       } //End postData
     
       function clearInput() {
@@ -43,12 +43,12 @@ function ajax() {
          input[i].value = '';
         }
       }
-	    /////-----Pfrjyxbk pltcm	  
+      /////-----Pfrjyxbk pltcm    
       postData(formData)
-	        .then(()=>statusMessage.src ="../img/ajax-loader.gif")
-	        .then(()=>statusMessage.src="../img/success2.png")
-	        .catch(()=> statusMessage.src="../img/error.png")
-	        .then(clearInput)	  
+          .then(()=>statusMessage.src ="../img/ajax-loader.gif")
+          .then(()=>statusMessage.src="../img/success2.png")
+          .catch(()=> statusMessage.src="../img/error.png")
+          .then(clearInput);    
     });     
   }
 
@@ -56,7 +56,7 @@ function ajax() {
       form2 = document.getElementById('form');
           
   sendForm(form);
-  sendForm(form2);   	
+  sendForm(form2);    
 }
 
 module.exports =ajax;

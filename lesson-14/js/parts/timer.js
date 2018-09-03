@@ -2,8 +2,8 @@ function timer(){
    let deadline = '2018-08-21';
 
     let getTimeRemaining = (endTime) => {
-      if  (Date.parse(endTime)-Date.parse(new Date) > 0) {
-          let t = Date.parse(endTime)-Date.parse(new Date), 
+      if  (Date.parse(endTime)-Date.parse(new Date()) > 0) {
+          let t = Date.parse(endTime)-Date.parse(new Date()), 
               seconds = Math.floor( (t/1000) % 60 ),
               minutes = Math.floor( (t/1000/60) % 60 ),
               hours = Math.floor( (t/1000/60/60) );
@@ -12,15 +12,14 @@ function timer(){
           'minutes' : minutes,
           'hours' : hours,
           'seconds' : seconds
-      }}   else {
+          };
+        } else {
           return {
           'total' : 0,
           'minutes' : 0,
           'hours' : 0,
           'seconds' : 0
-      }  
-
-        
+          };        
        }
           
     };
@@ -45,7 +44,7 @@ function timer(){
 
      let addZero = (x) =>{
         return (x<10) ? '0'+x : x;
-      }
+      };
       let timeInterval = setInterval(updateClock, 1000);
       updateClock();
 

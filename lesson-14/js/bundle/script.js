@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", ()=>{
+
   let tab = require('../parts/tab.js');
   let modal = require('../parts/modal.js');
   let ajax = require('../parts/ajax.js');
@@ -15,5 +15,5 @@ window.addEventListener("DOMContentLoaded", ()=>{
   slowscroll();
   calc();
   timer();
-});
+
   
