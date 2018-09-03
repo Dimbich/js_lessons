@@ -95,43 +95,29 @@ function calc() {
       personsSum = 0,
       daysSum = 0,
       total = 0;
-  totalValue.innerHTML = 0;
-  persons.addEventListener('change', function () {
+      totalValue.innerHTML = 0;
+
+   persons.addEventListener('input', function () {
     personsSum = +this.value;
     total = (daysSum + personsSum) * 4000;
 
-    if (restDays.value == '' || this.value == '') {
+    if (!restDays.value || !this.value ) {
       totalValue.innerHTML = 0;
     } else {
       totalValue.innerHTML = total;
     }
   });
-  restDays.addEventListener('change', function () {
+
+  restDays.addEventListener('input', function () {
     daysSum = +this.value;
     total = (daysSum + personsSum) * 4000;
 
-    if (personsSum.value == '' || this.value == '') {
+    if (!persons.value || !this.value ) {
       totalValue.innerHTML = 0;
     } else {
       totalValue.innerHTML = total;
     }
   });
-//--------
-  persons.addEventListener('blur', function () {
-    if (restDays.value == '' || this.value == '') {
-      totalValue.innerHTML = 0;
-    } else {
-      totalValue.innerHTML = total;
-    }
-  });
-  restDays.addEventListener('blur', function () {
-    if (personsSum.value == '' || this.value == '') {
-      totalValue.innerHTML = 0;
-    } else {
-      totalValue.innerHTML = total;
-    }
-  });
-//-----  
 
   place.addEventListener('change', function () {
     if (personsSum.value == '' || restDays.value == '') {
