@@ -204,6 +204,17 @@ window.addEventListener("DOMContentLoaded", ()=>{
         input2[i].value = '';
       }
 
-    });
+    })
+   // function maskPhone() {
+      let phoneFields = document.querySelectorAll('input[type="tel"]');
+      
+      for(let i = 0; i < phoneFields.length; i++) {
+        console.log(phoneFields[i]);
+       phoneFields[i].addEventListener('focus', function(){
+          this.setAttribute('placeholder','Работает!');
+          //this.value= 'Работает';
+       }); 
+      }  
+
   });
   
