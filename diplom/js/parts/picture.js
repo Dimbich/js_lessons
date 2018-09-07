@@ -2,6 +2,8 @@
 
 require("core-js/modules/es6.regexp.replace");
 
+require("core-js/modules/es6.regexp.replace");
+
 function picture() {
   var allSizeImage = document.querySelectorAll('.sizes-block');
 

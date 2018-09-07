@@ -1,13 +1,16 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 
   let picture = require('../parts/picture.js');
+  let showexamplework = require('../parts/showexamplework.js');
 
   picture();
-
+  showexamplework();
   
 
-},{"../parts/picture.js":2}],2:[function(require,module,exports){
+},{"../parts/picture.js":2,"../parts/showexamplework.js":3}],2:[function(require,module,exports){
 "use strict";
+
+require("core-js/modules/es6.regexp.replace");
 
 require("core-js/modules/es6.regexp.replace");
 
@@ -49,31 +52,50 @@ function picture() {
 }
 
 module.exports = picture;
-},{"core-js/modules/es6.regexp.replace":23}],3:[function(require,module,exports){
+},{"core-js/modules/es6.regexp.replace":24}],3:[function(require,module,exports){
+"use strict";
+
+function showexamplework() {
+  var btnStyles = document.querySelector('button.button-styles');
+  btnStyles.addEventListener('click', function () {
+    var pictureStyle = document.querySelectorAll('section.styles div.row>div');
+
+    for (var i = 0; i < pictureStyle.length; i++) {
+      if (~pictureStyle[i].className.indexOf('hidden')) {
+        pictureStyle[i].className = 'col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1';
+      }
+    }
+
+    this.style.display = 'none';
+  });
+}
+
+module.exports = showexamplework;
+},{}],4:[function(require,module,exports){
 var isObject = require('./_is-object');
 module.exports = function (it) {
   if (!isObject(it)) throw TypeError(it + ' is not an object!');
   return it;
 };
 
-},{"./_is-object":14}],4:[function(require,module,exports){
+},{"./_is-object":15}],5:[function(require,module,exports){
 var core = module.exports = { version: '2.5.7' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 // 7.2.1 RequireObjectCoercible(argument)
 module.exports = function (it) {
   if (it == undefined) throw TypeError("Can't call method on  " + it);
   return it;
 };
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 // Thank's IE8 for his funny defineProperty
 module.exports = !require('./_fails')(function () {
   return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 });
 
-},{"./_fails":8}],7:[function(require,module,exports){
+},{"./_fails":9}],8:[function(require,module,exports){
 var isObject = require('./_is-object');
 var document = require('./_global').document;
 // typeof document.createElement is 'object' in old IE
@@ -82,7 +104,7 @@ module.exports = function (it) {
   return is ? document.createElement(it) : {};
 };
 
-},{"./_global":10,"./_is-object":14}],8:[function(require,module,exports){
+},{"./_global":11,"./_is-object":15}],9:[function(require,module,exports){
 module.exports = function (exec) {
   try {
     return !!exec();
@@ -91,7 +113,7 @@ module.exports = function (exec) {
   }
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 var hide = require('./_hide');
 var redefine = require('./_redefine');
@@ -121,7 +143,7 @@ module.exports = function (KEY, length, exec) {
   }
 };
 
-},{"./_defined":5,"./_fails":8,"./_hide":12,"./_redefine":18,"./_wks":22}],10:[function(require,module,exports){
+},{"./_defined":6,"./_fails":9,"./_hide":13,"./_redefine":19,"./_wks":23}],11:[function(require,module,exports){
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 var global = module.exports = typeof window != 'undefined' && window.Math == Math
   ? window : typeof self != 'undefined' && self.Math == Math ? self
@@ -129,13 +151,13 @@ var global = module.exports = typeof window != 'undefined' && window.Math == Mat
   : Function('return this')();
 if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 var hasOwnProperty = {}.hasOwnProperty;
 module.exports = function (it, key) {
   return hasOwnProperty.call(it, key);
 };
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var dP = require('./_object-dp');
 var createDesc = require('./_property-desc');
 module.exports = require('./_descriptors') ? function (object, key, value) {
@@ -145,20 +167,20 @@ module.exports = require('./_descriptors') ? function (object, key, value) {
   return object;
 };
 
-},{"./_descriptors":6,"./_object-dp":16,"./_property-desc":17}],13:[function(require,module,exports){
+},{"./_descriptors":7,"./_object-dp":17,"./_property-desc":18}],14:[function(require,module,exports){
 module.exports = !require('./_descriptors') && !require('./_fails')(function () {
   return Object.defineProperty(require('./_dom-create')('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
-},{"./_descriptors":6,"./_dom-create":7,"./_fails":8}],14:[function(require,module,exports){
+},{"./_descriptors":7,"./_dom-create":8,"./_fails":9}],15:[function(require,module,exports){
 module.exports = function (it) {
   return typeof it === 'object' ? it !== null : typeof it === 'function';
 };
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = false;
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 var anObject = require('./_an-object');
 var IE8_DOM_DEFINE = require('./_ie8-dom-define');
 var toPrimitive = require('./_to-primitive');
@@ -176,7 +198,7 @@ exports.f = require('./_descriptors') ? Object.defineProperty : function defineP
   return O;
 };
 
-},{"./_an-object":3,"./_descriptors":6,"./_ie8-dom-define":13,"./_to-primitive":20}],17:[function(require,module,exports){
+},{"./_an-object":4,"./_descriptors":7,"./_ie8-dom-define":14,"./_to-primitive":21}],18:[function(require,module,exports){
 module.exports = function (bitmap, value) {
   return {
     enumerable: !(bitmap & 1),
@@ -186,7 +208,7 @@ module.exports = function (bitmap, value) {
   };
 };
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 var global = require('./_global');
 var hide = require('./_hide');
 var has = require('./_has');
@@ -219,7 +241,7 @@ require('./_core').inspectSource = function (it) {
   return typeof this == 'function' && this[SRC] || $toString.call(this);
 });
 
-},{"./_core":4,"./_global":10,"./_has":11,"./_hide":12,"./_uid":21}],19:[function(require,module,exports){
+},{"./_core":5,"./_global":11,"./_has":12,"./_hide":13,"./_uid":22}],20:[function(require,module,exports){
 var core = require('./_core');
 var global = require('./_global');
 var SHARED = '__core-js_shared__';
@@ -233,7 +255,7 @@ var store = global[SHARED] || (global[SHARED] = {});
   copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
 });
 
-},{"./_core":4,"./_global":10,"./_library":15}],20:[function(require,module,exports){
+},{"./_core":5,"./_global":11,"./_library":16}],21:[function(require,module,exports){
 // 7.1.1 ToPrimitive(input [, PreferredType])
 var isObject = require('./_is-object');
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
@@ -247,14 +269,14 @@ module.exports = function (it, S) {
   throw TypeError("Can't convert object to primitive value");
 };
 
-},{"./_is-object":14}],21:[function(require,module,exports){
+},{"./_is-object":15}],22:[function(require,module,exports){
 var id = 0;
 var px = Math.random();
 module.exports = function (key) {
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 var store = require('./_shared')('wks');
 var uid = require('./_uid');
 var Symbol = require('./_global').Symbol;
@@ -267,7 +289,7 @@ var $exports = module.exports = function (name) {
 
 $exports.store = store;
 
-},{"./_global":10,"./_shared":19,"./_uid":21}],23:[function(require,module,exports){
+},{"./_global":11,"./_shared":20,"./_uid":22}],24:[function(require,module,exports){
 // @@replace logic
 require('./_fix-re-wks')('replace', 2, function (defined, REPLACE, $replace) {
   // 21.1.3.14 String.prototype.replace(searchValue, replaceValue)
@@ -281,4 +303,4 @@ require('./_fix-re-wks')('replace', 2, function (defined, REPLACE, $replace) {
   }, $replace];
 });
 
-},{"./_fix-re-wks":9}]},{},[1]);
+},{"./_fix-re-wks":10}]},{},[1]);
