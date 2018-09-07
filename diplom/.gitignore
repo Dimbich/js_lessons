@@ -30,7 +30,3 @@ node_modules
 npm-debug.log
 .idea
 package-lock.json
-
-lesson-14/node_modules
-lesson-16/node_modules
-diplom/node_modules

@@ -1,4 +1,4 @@
-
+function picture( ) {
 
   let allSizeImage = document.querySelectorAll('.sizes-block');
   
@@ -36,3 +36,4 @@
 	  }		
     } 		
   }
+}
