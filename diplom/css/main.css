@@ -653,9 +653,13 @@ h4 {
 .portfolio-no {
   text-align: center;
   font-size: 3rem;
-  display: none;
   margin: 15rem 0;
 }
+
+.hidden {
+  display: none;
+}
+
 .gift {
   background: url('../img/gift-bg.jpg') no-repeat;
   background-size: cover;
