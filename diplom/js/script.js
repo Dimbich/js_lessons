@@ -168,41 +168,91 @@ function setPrice(elem, startPrice) {
 
 let gift = document.querySelector('.fixed-gift'),
     closeButtons= document.querySelectorAll('.popup-close'),
-    popupGift = document.querySelector('.popup-gift');
+    popupGift = document.querySelector('.popup-gift'),
+    isEndDoc = false,
+    isOpen = false;
+    giftWasShowed = false;
     
+popupGift.classList.add('hidden');
 
 for (let i = 0 ; i < closeButtons.length ; i++) {
-  closeButtons[i].addEventListener('click', function(){
-	popupGift.classList.add('hidden');
+  closeButtons[i].addEventListener('click', function(){	
     document.body.style.overflow = '';
 });	
 }
 
 popupGift.addEventListener('click', function(event){
-  hideGiftModal.call(this, event); 
+  hideModal.call(this, event); 
 
 });	
 
 
 gift.addEventListener('click', function(){
-  showGiftModal();
+  showModal(popupGift);
 });
 
-function showGiftModal() {
-    countClick++;
-    popupGift.classList.remove('hidden');
-    gift.classList.add('hidden');
-    document.body.style.overflow = 'hidden';
-  	
+//orderModal
+let btnOrder = document.getElementsByClassName('button-design'),
+    popupDesign = document.querySelector('.popup-design');
+
+popupDesign.classList.add('hidden');
+
+for (let i = 0 ; i < btnOrder.length ; i++) {
+  btnOrder[i].addEventListener('click', function(){
+  showModal(popupDesign);
+  });
 }
 
-function hideGiftModal(event) {
-  console.log(this);
-  console.log(event.target);
+popupDesign.addEventListener('click', function(event){
+  hideModal.call(this, event); 
+
+}); 
+
+//modalConsultation
+let btnConsultation = document.getElementsByClassName('button-consultation'),
+     popupConsultation = document.querySelector('.popup-consultation');
+
+popupConsultation.classList.add('hidden');
+
+for (let i = 0 ; i < btnConsultation.length ; i++) {
+  btnConsultation[i].addEventListener('click', function(){
+    showModal(popupConsultation);
+  });
+}
+
+popupConsultation.addEventListener('click', function(event){
+  hideModal.call(this, event); 
+
+}); 
+
+function hideModal(event) {
+ if (this.classList.contains('popup-gift')) {
+   giftWasShowed = true;	
+ }
+//если клик на подложке или на кнопке закрыть 	
   if (this == event.target || event.target.tagName == 'BUTTON') {
+  	//скрываем подложку
 	this.classList.add('hidden');
-	document.body.style.overflow = '';	
+	//отображаем прокрутку
+	document.body.style.overflow = '';
+	//Если закрываем модальное окно подарка или конец документа
+    if (giftWasShowed) {
+  	  //скрываем подарок
+      gift.classList.add('hidden');
+      //иначе  если была нажата кнопка отображаем подарок
+    }  else {
+  	 gift.classList.remove('hidden');
+    }	
   }	
+  isOpen = false;
+}
+
+function showModal(event) {
+  
+  event.classList.remove('hidden');    
+  document.body.style.overflow = 'hidden';
+  gift.classList.add('hidden');
+  isOpen = true;
 }
 
 //прокрутка
@@ -212,7 +262,8 @@ window.addEventListener('scroll', () => {
       displayHeight = document.documentElement.clientHeight, 
       isEndDoc = (scroll >= docHeightAllDoc-displayHeight);	
   if (isEndDoc && !countClick) {
-  	showGiftModal();
+  	countClick++;
+  	showModal(popupGift);
   } 
   
 });
@@ -224,4 +275,95 @@ for (let i = 0 ; i < allButtons.length ; i++) {
 	  countClick++;	
 	});
 }
+
+
+//60 sec
+window.addEventListener('DOMContentLoaded', ()=>{
+let start=  Date.now();
+let timer = setInterval(function() {
+  // вычислить сколько времени прошло с начала анимации
+  let timePassed = Date.now() - start;
+ //если прошло 60 секунд
+  if (timePassed >= 60000) {
+  	//и не открыто моальное окно
+  	if (!isOpen) {
+  	  //показываем окно	
+      showModal(popupConsultation);
+    } 
+    //останавливаем таймер
+  	clearInterval(timer);
+  }  
+}, 500);	
+});
+
+
+//слайдер
+  let   slideIndex =1,
+      slides = document.getElementsByClassName('main-slider-item');
+      prev = document.querySelector('.main-prev-btn'),
+      next = document.querySelector('.main-next-btn');
+     /*p dotsWrap = document.querySelector('.main-next-btn'),
+      dots = document.getElementsByClassName('dot');
+*/
+
+for ( let i = 0; i <slides.length ; i++) {
+  slides[i].classList.add('slideInDown');
+}
+
+  showSlides(slideIndex);
+
+  function showSlides(n) {
+
+    if(n > slides.length) {
+      slideIndex = 1 ;
+    } 
+
+    if(n < 1) {
+      slideIndex = slides.length;
+    }
+
+    for ( let i = 0 ; i < slides.length; i++) {
+      slides[i].style.display='none';       
+    }
+
+   /* for ( let i = 0 ; i < dots.length; i++) {
+      dots[i].classList.remove('dot-active');
+    }*/
+
+    slides[slideIndex-1].style.display='block';
+    /*dots[slideIndex-1].classList.add('dot-active');*/
+
+  }
+
+  prev.addEventListener('click', function(){
+    clearTimeout(timer);
+    plusSlides(-1);
+  });
+
+  next.addEventListener('click', function(){
+    clearTimeout(timer);
+    plusSlides(1);
+  });
+
+    function plusSlides(n) {
+    
+    showSlides(slideIndex += n);
+    let timerID=setTimeout(()=>{
+      plusSlides(1)
+    },5000);
+    timer = timerID;
+  }
+
+  function curentSlide(n) {
+    showSlides(slideIndex = n);   
+  }
+
+ window.addEventListener('DOMContentLoaded',()=>{
+    plusSlides(1);  
+  });
+
+
+
+
+
 

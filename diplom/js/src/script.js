@@ -3,11 +3,13 @@
   let showexamplework = require('../parts/showexamplework.js');
   let portfolio = require('../parts/portfolio.js');
   let calc = require('../parts/calc.js');
-  let modalGift = require('../parts/modalGift.js');
+  let modal = require('../parts/modal.js');
+  let slider = require('../parts/slider.js');
 
   picture();
   showexamplework();
   portfolio();
   calc();
-  modalGift();
+  modal();
+  slider();
   

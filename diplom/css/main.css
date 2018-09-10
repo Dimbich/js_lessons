@@ -356,6 +356,11 @@ h4 {
   padding: 1.5rem 4rem;
   margin-bottom: 7rem;
 }
+
+.main-slider {
+  overflow: hidden;
+}
+
 .main-slider-btn {
   position: absolute;
   top: 50%;
@@ -1015,14 +1020,14 @@ h4 {
 .popup-consultation {
   z-index: 20;
   position: fixed;
-  display: none;
+  /*display: none;*/
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   width: 100%;
   height: 100%;
-  /* background-color: rgba(178, 80, 188, 0.8); */
+  background-color: rgba(178, 80, 188, 0.8);
 }
 .popup-consultation .button-transparent {
   border: 2px dashed #c51abb;
@@ -1131,7 +1136,7 @@ h4 {
 .popup-design {
   z-index: 20;
   position: fixed;
-  display: none;
+  /*display: none;*/
   top: 0;
   bottom: 0;
   left: 0;
