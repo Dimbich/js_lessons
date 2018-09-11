@@ -7,6 +7,7 @@
   let slider = require('../parts/slider.js');
   let accordion = require('../parts/accordion.js');
   let burgerMenu = require('../parts/burgerMenu.js');
+  let sliderDown = require('../parts/sliderDown.js');
 
   picture();
   showexamplework();
@@ -16,4 +17,5 @@
   slider();
   accordion();
   burgerMenu();
+  sliderDown();
   

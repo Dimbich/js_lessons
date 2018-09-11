@@ -630,8 +630,13 @@
 }
 
 .fadeInLeft {
-    animation-name: fadeInLeft
-}
+        -webkit-animation-name: fadeInLeft;
+         animation-name: fadeInLeft;
+ -webkit-animation-duration: 1.5s;
+         animation-duration: 1.5s;
+ -webkit-animation-name: fadeInLeft;
+ -webkit-animation-duration: 1.5s;   
+} 
 
 @keyframes fadeInLeftBig {
     from {
@@ -662,6 +667,12 @@
 }
 
 .fadeInRight {
+        -webkit-animation-name: fadeInRight;
+         animation-name: fadeInRight;
+ -webkit-animation-duration: 1.5s;
+         animation-duration: 1.5s;
+ -webkit-animation-name:fadeInRight;
+ -webkit-animation-duration: 1.5s; 
     animation-name: fadeInRight
 }
 

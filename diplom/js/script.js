@@ -296,67 +296,6 @@ let timer = setInterval(function() {
 }, 500);	
 });
 
-
-//слайдер
-let   slideIndex =1,
-      slides = document.getElementsByClassName('main-slider-item'),
-      prev = document.querySelector('.main-prev-btn'),
-      next = document.querySelector('.main-next-btn');
-
-
-for ( let i = 0; i <slides.length ; i++) {
-  slides[i].classList.add('slideInDown');
-}
-
- showSlides(slideIndex);
-
-function showSlides(n) {
-
-  if(n > slides.length) {
-      slideIndex = 1 ;
-  } 
-
-  if(n < 1) {
-    slideIndex = slides.length;
-  }
-
-  for ( let i = 0 ; i < slides.length; i++) {
-    slides[i].style.display='none';       
-  }
-
-
-  slides[slideIndex-1].style.display='block';
-
-}
-
-prev.addEventListener('click', function(){
-  clearTimeout(timer);
-  plusSlides(-1);
-});
-
-next.addEventListener('click', function(){
-  clearTimeout(timer);
-  plusSlides(1);
-});
-
-function plusSlides(n) {    
-  showSlides(slideIndex += n);
-  
-  let timerID=setTimeout(()=>{
-      plusSlides(1)
-    },5000);
-
-  timer = timerID;
-}
-
-function curentSlide(n) {
-  showSlides(slideIndex = n);   
-}
-
-window.addEventListener('DOMContentLoaded',()=>{
-  plusSlides(1);  
-});
-
 //аккардеон
 
 let accordion = document.getElementById('accordion'),
@@ -438,4 +377,120 @@ function showMenu(width) {
 
 
 
+//слайдер
+let   slideIndex =1,
+      slides = document.getElementsByClassName('main-slider-item'),
+      prev = document.querySelector('.main-prev-btn'),
+      next = document.querySelector('.main-next-btn'),
+      timer;
+
+
+for ( let i = 0; i <slides.length ; i++) {
+  slides[i].classList.add('slideInDown');
+}
+
+ showSlides(slideIndex);
+
+function showSlides(n) {
+
+  if(n > slides.length) {
+      slideIndex = 1 ;
+  } 
+
+  if(n < 1) {
+    slideIndex = slides.length;
+  }
+
+  for ( let i = 0 ; i < slides.length; i++) {
+    slides[i].style.display='none';       
+  }
+
+
+  slides[slideIndex-1].style.display='block';
+
+}
+
+prev.addEventListener('click', function() {
+  clearTimeout(timer);
+  plusSlides(-1);
+});
+
+next.addEventListener('click', function() {
+  clearTimeout(timer);
+  plusSlides(1);
+});
+
+function plusSlides(n) {    
+  showSlides(slideIndex += n);
+  
+  let timerID=setTimeout(function() {
+      plusSlides(1);
+    },5000);
+
+  timer = timerID;
+}
+
+function curentSlide(n) {
+  showSlides(slideIndex = n);   
+}
+
+window.addEventListener('DOMContentLoaded',function() {
+  plusSlides(1);  
+});
+
+//слайдер нижний
+ let feedbackSlides = document.getElementsByClassName('feedback-slider-item'),
+     prevSlide = document.querySelector('.feedback-slider button.main-prev-btn'),
+     nextSlide = document.querySelector('.feedback-slider button.main-next-btn'),
+     curSlideIndex = 1,
+     timerFeedBack;
+
+for ( let i = 0; i <feedbackSlides.length ; i++) {
+  feedbackSlides[i].classList.add('fadeInLeft');
+}
+
+showFeedbackSlides(curSlideIndex);
+
+function showFeedbackSlides(n) {
+
+  if(n > feedbackSlides.length) {
+      curSlideIndex= 1 ;
+  } 
+
+  if(n < 1) {
+    curSlideIndex =  feedbackSlides.length;
+  }
+
+  for ( let i = 0 ; i <  feedbackSlides.length; i++) {
+     feedbackSlides[i].style.display='none';       
+  }
+
+   
+   feedbackSlides[curSlideIndex-1].style.display='block';
+
+}
+
+prevSlide.addEventListener('click', function() {
+  clearTimeout(timerFeedBack);
+  changeSlides(-1);
+});
+
+nextSlide.addEventListener('click', function() {
+  clearTimeout(timerFeedBack);
+  changeSlides(1);
+});
+
+function changeSlides(n) {    
+  showFeedbackSlides(curSlideIndex += n);
+  
+  let timerID=setTimeout(function() {
+      changeSlides(1);
+    },5000);
+
+  timerFeedBack = timerID;
+}
+
+window.addEventListener('DOMContentLoaded',function() {
+  changeSlides(1);  
+});
 
