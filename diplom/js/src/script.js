@@ -5,6 +5,7 @@
   let calc = require('../parts/calc.js');
   let modal = require('../parts/modal.js');
   let slider = require('../parts/slider.js');
+  let accordion = require('../parts/accordion.js');
 
   picture();
   showexamplework();
@@ -12,4 +13,5 @@
   calc();
   modal();
   slider();
+  accordion();
   

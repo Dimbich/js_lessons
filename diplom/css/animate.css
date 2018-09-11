@@ -593,7 +593,12 @@
 }
 
 .fadeInDown {
-    animation-name: fadeInDown
+     -webkit-animation-name: fadeInDownn;
+         animation-name: fadeInDown;
+ -webkit-animation-duration: 1.5s;
+         animation-duration: 1.5s;
+ -webkit-animation-name: fadeInDown;
+ -webkit-animation-duration: 1.5s;   
 }
 
 @keyframes fadeInDownBig {
@@ -1466,7 +1471,7 @@
 
 @keyframes slideInDown {
     from {
-        transform: translate3d(0,-100%,0);
+        transform: translate3d(0,-50%,0);
         visibility: visible
     }
 

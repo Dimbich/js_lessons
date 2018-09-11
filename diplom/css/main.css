@@ -915,6 +915,7 @@ h4 {
   background-color: #f7e7e6;
   padding: 3rem 4rem;
 }
+
 .often-questions .accordion-block:before {
   content: '';
   position: absolute;

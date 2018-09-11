@@ -298,70 +298,116 @@ let timer = setInterval(function() {
 
 
 //слайдер
-  let   slideIndex =1,
-      slides = document.getElementsByClassName('main-slider-item');
+let   slideIndex =1,
+      slides = document.getElementsByClassName('main-slider-item'),
       prev = document.querySelector('.main-prev-btn'),
       next = document.querySelector('.main-next-btn');
-     /*p dotsWrap = document.querySelector('.main-next-btn'),
-      dots = document.getElementsByClassName('dot');
-*/
+
 
 for ( let i = 0; i <slides.length ; i++) {
   slides[i].classList.add('slideInDown');
 }
 
-  showSlides(slideIndex);
+ showSlides(slideIndex);
 
-  function showSlides(n) {
+function showSlides(n) {
 
-    if(n > slides.length) {
+  if(n > slides.length) {
       slideIndex = 1 ;
-    } 
+  } 
 
-    if(n < 1) {
-      slideIndex = slides.length;
-    }
-
-    for ( let i = 0 ; i < slides.length; i++) {
-      slides[i].style.display='none';       
-    }
-
-   /* for ( let i = 0 ; i < dots.length; i++) {
-      dots[i].classList.remove('dot-active');
-    }*/
-
-    slides[slideIndex-1].style.display='block';
-    /*dots[slideIndex-1].classList.add('dot-active');*/
-
+  if(n < 1) {
+    slideIndex = slides.length;
   }
 
-  prev.addEventListener('click', function(){
-    clearTimeout(timer);
-    plusSlides(-1);
-  });
+  for ( let i = 0 ; i < slides.length; i++) {
+    slides[i].style.display='none';       
+  }
 
-  next.addEventListener('click', function(){
-    clearTimeout(timer);
-    plusSlides(1);
-  });
 
-    function plusSlides(n) {
-    
-    showSlides(slideIndex += n);
-    let timerID=setTimeout(()=>{
+  slides[slideIndex-1].style.display='block';
+
+}
+
+prev.addEventListener('click', function(){
+  clearTimeout(timer);
+  plusSlides(-1);
+});
+
+next.addEventListener('click', function(){
+  clearTimeout(timer);
+  plusSlides(1);
+});
+
+function plusSlides(n) {    
+  showSlides(slideIndex += n);
+  
+  let timerID=setTimeout(()=>{
       plusSlides(1)
     },5000);
-    timer = timerID;
+
+  timer = timerID;
+}
+
+function curentSlide(n) {
+  showSlides(slideIndex = n);   
+}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  plusSlides(1);  
+});
+
+//аккардеон
+
+let accordion = document.getElementById('accordion'),
+    accordionBlock = document.getElementsByClassName('accordion-block'),
+    accordionHeading = document.getElementsByClassName('accordion-heading');
+
+for (let i = 0; i < accordionBlock.length ; i++) {
+    accordionBlock[i].classList.add('fadeInDown');   
+  }  
+
+hideAll();
+
+accordion.addEventListener('click', function(event) {
+  let target = event.target;
+  while (target != this) {
+    if (target.classList.contains('accordion-heading')) {
+      // нашли элемент, который нас интересует!
+      showItem(target);
+      return;
+    }
+    target = target.parentNode;
   }
+});
 
-  function curentSlide(n) {
-    showSlides(slideIndex = n);   
+function hideAll() {
+  for (let i = 0; i < accordionBlock.length ; i++) {
+    accordionBlock[i].classList.add('hidden'); 
+     
+  }   
+}
+
+function deleteStyle() {
+  for (let i = 0; i <accordionHeading.length ; i++) {
+     accordionHeading[i].firstChild.style="";
+  }  
+}
+
+function showItem(elem) {
+  let accChildBlock = elem.nextElementSibling;
+
+  if (accChildBlock.classList.contains('hidden')) {
+    hideAll();
+    deleteStyle();
+    accChildBlock.classList.remove('hidden');
+    elem.firstChild.style.cssText = 'color: rgba(178, 80, 188, 0.8); border-bottom: none';
+
+  } else {    
+     accChildBlock.classList.add('hidden');
+     elem.firstChild.style = "";
   }
-
- window.addEventListener('DOMContentLoaded',()=>{
-    plusSlides(1);  
-  });
-
+} 
 
 
 

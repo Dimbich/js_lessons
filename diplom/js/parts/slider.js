@@ -46,7 +46,7 @@ function plusSlides(n) {
   showSlides(slideIndex += n);
   
   let timerID=setTimeout(function() {
-      plusSlides(1)
+      plusSlides(1);
     },5000);
 
   timer = timerID;
