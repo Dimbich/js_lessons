@@ -186,7 +186,7 @@ h4 {
   margin-left: 1rem;
 }
 .header .burger-menu {
-  display: none;
+  /*display: none;*/
   position: absolute;
   background-color: #fff;
   z-index: 10;

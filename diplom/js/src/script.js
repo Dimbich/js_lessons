@@ -6,6 +6,7 @@
   let modal = require('../parts/modal.js');
   let slider = require('../parts/slider.js');
   let accordion = require('../parts/accordion.js');
+  let burgerMenu = require('../parts/burgerMenu.js');
 
   picture();
   showexamplework();
@@ -14,4 +15,5 @@
   modal();
   slider();
   accordion();
+  burgerMenu();
   
