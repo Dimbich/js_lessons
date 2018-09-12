@@ -17,7 +17,7 @@ function picture() {
   }
 
   function showPicture(img) {
-    img.src = img.src.replace(/(\d)/g, '$1-1');
+    img.src = img.src.replace(/(\d)\.png$/g, '$1-1.png');
     hideOrShowDiscrPict(img, event.type);
   }
 
