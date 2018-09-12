@@ -129,7 +129,8 @@ function ajax() {
 
   function clearDiv(type) {
     var element = this,
-        key = true;
+        key = true,
+        btn;
 
     if (key) {
       console.log(element);
