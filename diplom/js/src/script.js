@@ -8,6 +8,7 @@
   let accordion = require('../parts/accordion.js');
   let burgerMenu = require('../parts/burgerMenu.js');
   let sliderDown = require('../parts/sliderDown.js');
+  let ajax = require('../parts/ajax.js');
 
   picture();
   showexamplework();
@@ -18,4 +19,5 @@
   accordion();
   burgerMenu();
   sliderDown();
+  ajax();
   

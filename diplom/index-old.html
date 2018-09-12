@@ -599,14 +599,14 @@
 			<p class=p-heading>Остались вопросы?</p>
 			<h2>Получите консультацию художника!</h2>
 			<div class="col-md-10 col-md-offset-1">
-				<form action=# method=POST">
+				<form action=mailer/smart.php method=POST>
 					<div class=input-wrapper>
 						<input type=text name=name placeholder="Ваше имя" required>
 						<input type=text name=phone placeholder="Ваш телефон" required>
 						<input type=text name=email placeholder="Ваш E-mail">
 						<input class=input-text name=message type=text placeholder="Задайте ваш вопрос здесь" required>
 					</div>
-					<button class="button button-order">Получить консультацию</button>
+					<button class="button button-order" onclick="yaCounter46630539.reachGoal('btn-consultation'); return true;">Получить консультацию</button>
 				</form>
 			</div>
 		</div>
@@ -671,7 +671,7 @@
 					<form class=form action="#" method=POST>
 						<input type=text name=name placeholder="Ваше имя" required>
 						<input type=text name=phone placeholder="Ваш телефон" required>
-						<button class="button button-order">Получить консультацию</button>
+						<button class="button button-order" onclick="yaCounter46630539.reachGoal('btn-consultation'); return true;">Получить консультацию</button>
 					</form>
 				</div>
 			</div>
@@ -711,7 +711,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/src/bundle.js"></script>
+	<script src="js/bundle/bundle.js"></script>
 	<!--<script src="js/script.js"></script>-->
 	<link rel=stylesheet href=css/bootstrap.css>
 	<link rel=stylesheet href=css/main.css>
